@@ -1,10 +1,12 @@
 <template>
+<section>
+  <cabecalho />
   <div class="container">
     <h2>{{ titulo }}</h2>
     <div class="input-group">
       <input @keyup.enter="adicionarTarefa" v-model="novatarefa" type="text">
       <span class="input-group-btn">
-        <button @click="adicionarTarefa" class="btn btn-primary">Adicionar</button>
+        <button @click="adicionarTarefa" class="btn btn-primary">Adicionar Tarefas</button>
       </span>
 
     </div>
@@ -17,23 +19,27 @@
       </li>
       </ul>
     <footer>
-      <em>Altere aqui o titulo da sua lista de tarefas</em>
-      <input v-model="titulo" type="text" />
+      
     </footer>
   </div>
+  <rodape />
+</section>
 </template>
 
 <script>
+import Cabecalho from "@/components/Cabecalho";
+import Rodape from "@/components/Rodape"
 
 export default {
   name: 'App',
+  components: { Cabecalho, Rodape },
   data() {
     return {
       titulo: "Minha lista de tarefas",
       novatarefa: '',
       tarefas: [
         {titulo: "Ler", checked: true },
-        {titulo: "Jogar", checked: true},
+        {titulo: "Jogar", checked: false},
       ]
     };
   },
@@ -53,17 +59,26 @@ export default {
 .container {
   width: 40%;
   margin: 20px auto 0px auto;
+ 
 }
 
 ul li {
   list-style: none;
+  font-family:cursive; 
+  color: black
 }
 
 .removed {
-  color: gray;
+  color: white;
 }
 
 .removed label {
   text-decoration: line-through;
 }
+
+button {
+  background-color: rgb(157, 216, 89);
+  color: white; text-shadow: black 0.1em 0.1em 0.2em;
+}
+
 </style>
