@@ -1,84 +1,56 @@
 <template>
-<section>
-  <cabecalho />
-  <div class="container">
-    <h2>{{ titulo }}</h2>
-    <div class="input-group">
-      <input @keyup.enter="adicionarTarefa" v-model="novatarefa" type="text">
-      <span class="input-group-btn">
-        <button @click="adicionarTarefa" class="btn btn-primary">Adicionar Tarefas</button>
-      </span>
+  <v-app>
+    <v-app-bar
+      app
+      color="primary"
+      dark
+    >
+      <div class="d-flex align-center">
+        <v-img
+          alt="Vuetify Logo"
+          class="shrink mr-2"
+          contain
+          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+          transition="scale-transition"
+          width="40"
+        />
 
-    </div>
-    <ul>
-      <li v-for="(tarefa, index) in tarefas"
-        :key="index"
-        :class="{removed: tarefa.checked}">
-        <input type="checkbox" v-model="tarefa.checked">
-        <label>{{ tarefa.titulo }}</label>
-      </li>
-      </ul>
-    <footer>
-      
-    </footer>
-  </div>
-  <rodape />
-</section>
+        <v-img
+          alt="Vuetify Name"
+          class="shrink mt-1 hidden-sm-and-down"
+          contain
+          min-width="100"
+          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
+          width="100"
+        />
+      </div>
+
+      <v-spacer></v-spacer>
+
+      <v-btn
+        href="https://github.com/vuetifyjs/vuetify/releases/latest"
+        target="_blank"
+        text
+      >
+        <span class="mr-2">Latest Release</span>
+        <v-icon>mdi-open-in-new</v-icon>
+      </v-btn>
+    </v-app-bar>
+
+    <v-main>
+      <router-view></router-view>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import Cabecalho from "@/components/Cabecalho";
-import Rodape from "@/components/Rodape"
 
 export default {
   name: 'App',
-  components: { Cabecalho, Rodape },
-  data() {
-    return {
-      titulo: "Minha lista de tarefas",
-      novatarefa: '',
-      tarefas: [
-        {titulo: "Ler", checked: true },
-        {titulo: "Jogar", checked: false},
-      ]
-    };
-  },
-  methods: {
-    adicionarTarefa() {
-      this.tarefas.push( {
-        titulo: this.novatarefa,
-        checked: false,
-      });
-      this.novatarefa = "";
-    }
-  }
-}
+
+  data: () => ({
+    //
+  }),
+};
 </script>
 
-<style>
-.container {
-  width: 40%;
-  margin: 20px auto 0px auto;
- 
-}
-
-ul li {
-  list-style: none;
-  font-family:cursive; 
-  color: black
-}
-
-.removed {
-  color: white;
-}
-
-.removed label {
-  text-decoration: line-through;
-}
-
-button {
-  background-color: rgb(157, 216, 89);
-  color: white; text-shadow: black 0.1em 0.1em 0.2em;
-}
-
-</style>
